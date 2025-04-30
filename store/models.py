@@ -15,6 +15,10 @@ class InstrumentCategory(models.Model):
     description = models.TextField(
         help_text="Provide a description of the instrument category."
     )
+
+    class Meta:
+        verbose_name_plural = "Instrument Categories"
+
     def __str__(self):
         return self.name
 
@@ -27,6 +31,7 @@ class InstrumentType(models.Model):
             MaxLengthValidator(30, "Category name cannot exceed 30 characters.")
         ]
         )
+    category = models.ForeignKey(InstrumentCategory, on_delete=models.CASCADE),
     description = models.TextField(
         help_text="Provide a description of the instrument type."
     )
@@ -35,7 +40,7 @@ class InstrumentType(models.Model):
         return self.name
 
 
-class Instruments(models.Model):
+class Instrument(models.Model):
     brand = models.CharField(
         max_length=30,
         help_text="Enter the brand name of the instrument (max 30 characters)",
@@ -45,17 +50,29 @@ class Instruments(models.Model):
         ]
     )
     model = models.CharField(
-        max_length=20,
-        help_text="Enter the model name of the instrument (max 20 characters)",
+        max_length=100,
+        help_text="Enter the model name of the instrument (max 100 characters)",
         validators=[
             MinLengthValidator(2, "Model name must be at least 2 characters long."),
-            MaxLengthValidator(20, "Model name cannot exceed 20 characters")
+            MaxLengthValidator(100, "Model name cannot exceed 100 characters")
         ],
+    )
+    color = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True,
+        help_text="Enter the color of the instrument (max 20 characters)",
+        validators=[
+            MinLengthValidator(2, "Color name must be at least 2 characters long."),
+            MaxLengthValidator(20, "Color name cannot exceed 20 characters.")
+        ]
     )
     description = models.TextField(
         help_text="Provide a detailed description of the instrument."
     )
     year = models.IntegerField(
+        blank=True,
+        null=True,
         help_text="Enter the year the instrument was manufactured.",
         validators=[
             MinValueValidator(1900, "Year must be 1900 or later."),
@@ -71,7 +88,7 @@ class Instruments(models.Model):
         help_text="Select one or more types for this instrument."
     )
     image = models.ImageField(
-        upload_to='images/',
+        upload_to='instruments/',
         help_text="Upload an image of the instrument."
     )
     price = models.DecimalField(

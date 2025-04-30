@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Music store{% endblock %}
+
+{% block content %}
+<div class="fixed-grid has-4-cols m-auto">
+    <div class="grid is-gap-4 m-auto">
+        {% for instrument in instruments %}
+        <a href="#">
+            <div class="card m-auto">
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="{{ instrument.image.url }}" alt="{{ instrument.name }}">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">{{ instrument.brand }}</p>
+                            <p class="subtitle is-6">{{ instrument.model }}</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="has-text-weight-bold is-size-5 has-text-primary">${{ instrument.price }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
