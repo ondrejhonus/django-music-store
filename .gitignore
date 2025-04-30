@@ -1,3 +1,4 @@
 .vscode/
 .venv/
 music_store/__pycache__
+store/__pycache__
