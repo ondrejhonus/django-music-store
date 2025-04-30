@@ -1,16 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Music store{% endblock %}
 
 {% block content %}
-<div class="fixed-grid has-4-cols m-auto">
+<div class="categories m-auto">
+    <div class="fixed-grid has-4-cols">
+        <div class="grid">
+            <div class="category">
+                <a href="/strings/">
+                    <img src="{% static 'img/strings.png' %}" alt="Strings" class="category-image">
+                    <p class="category-text">Strings</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/percussion/"></a>
+                    <img src="{% static 'img/percussion.png' %}" alt="Percussion" class="category-image">
+                    <p class="category-text">Percussion</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/keyboards/"></a>
+                    <img src="{% static 'img/keyboards.png' %}" alt="Keyboards" class="category-image">
+                    <p class="category-text">Keyboards</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/wind-instruments/"></a>
+                    <img src="{% static 'img/wind-instruments.png' %}" alt="Wind Instruments" class="category-image">
+                    <p class="category-text">Wind Instruments</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-grid has-4-cols m-auto mt-6">
     <div class="grid is-gap-4 m-auto">
         {% for instrument in instruments %}
         <a href="#">
             <div class="card m-auto">
                 <div class="card-image">
                     <figure class="image">
-                        <img src="{{ instrument.image.url }}" alt="{{ instrument.name }}">
+                        <img src="{{ instrument.image.url }}" alt="{{ instrument.name }}" class="item">
                     </figure>
                 </div>
                 <div class="card-content">
