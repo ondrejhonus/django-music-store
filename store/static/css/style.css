@@ -25,13 +25,13 @@ html, body {
 
 img.item {
     width: 100% !important;
-    height: 25em !important;
+    height: 20em !important;
     object-fit: cover;
 }
 
 .card {
     width: 100%;
-    height: 35em;
+    height: 30em;
 }
 
 .card:hover {

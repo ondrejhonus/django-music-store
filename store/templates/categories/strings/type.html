@@ -26,7 +26,7 @@
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'strings' 'Bass Guitars' %}">
+                <a href="{% url 'strings' 'Bass Guitar' %}">
                     <img src="{% static 'img/bass.png' %}" alt="Bass Guitars" class="category-image">
                     <p class="category-text">Bass Guitars</p>
                 </a>
@@ -35,7 +35,9 @@
     </div>
 </div>
 
-<h1 class="is-size-1 has-text-weight-bold">All Stringed Instruments</h1>
+<h1 cl
+
+<h1 class="is-size-1 has-text-weight-bold">{{ type }}s</h1>
 <hr>
 
 <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">

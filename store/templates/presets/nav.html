@@ -21,10 +21,10 @@
             <div class="dropdown-content">
                 <a href="/strings/" class="dropdown-item">Strings</a>
                 <hr class="dropdown-divider" />
-                <a href="/strings/electric-guitars" class="dropdown-item">Electric Guitars</a>
-                <a href="/strings/acoustic-guitars" class="dropdown-item">Acoustic Guitars</a>
-                <a href="/strings/violins" class="dropdown-item">Violins</a>
-                <a href="/strings/basses" class="dropdown-item">Basses</a>
+                <a href="{% url 'strings' 'Electric Guitar' %}" class="dropdown-item">Electric Guitars</a>
+                <a href="{% url 'strings' 'Acoustic Guitar' %}" class="dropdown-item">Acoustic Guitars</a>
+                <a href="{% url 'strings' 'Violin' %}" class="dropdown-item">Violins</a>
+                <a href="{% url 'strings' 'Bass Guitar' %}" class="dropdown-item">Bass Guitars</a>
             </div>
         </div>
     </div>
@@ -42,10 +42,10 @@
             <div class="dropdown-content">
                 <a href="/percussion/" class="dropdown-item">Percussion</a>
                 <hr class="dropdown-divider" />
-                <a href="/percussion/drums" class="dropdown-item">Drum Kits</a>
-                <a href="/percussion/cymbals" class="dropdown-item">Cymbals</a>
-                <a href="/percussion/congas" class="dropdown-item">Congas</a>
-                <a href="/percussion/tambourines" class="dropdown-item">Tambourines</a>
+                <a href="{% url 'percussion' 'Drum Kit' %}" class="dropdown-item">Drum Kits</a>
+                <a href="{% url 'percussion' 'Cymbal' %}" class="dropdown-item">Cymbals</a>
+                <a href="{% url 'percussion' 'Conga' %}" class="dropdown-item">Congas</a>
+                <a href="{% url 'percussion' 'Tambourine' %}" class="dropdown-item">Tambourines</a>
             </div>
         </div>
     </div>
@@ -63,10 +63,10 @@
             <div class="dropdown-content">
                 <a href="/keyboards/" class="dropdown-item">Keyboards</a>
                 <hr class="dropdown-divider" />
-                <a href="/keyboards/digital-pianos" class="dropdown-item">Digital Pianos</a>
-                <a href="/keyboards/synthesizers" class="dropdown-item">Synthesizers</a>
-                <a href="/keyboards/workstations" class="dropdown-item">Workstations</a>
-                <a href="/keyboards/midi-controllers" class="dropdown-item">MIDI Controllers</a>
+                <a href="{% url 'keyboards' 'Electric Piano' %}" class="dropdown-item">Digital Pianos</a>
+                <a href="{% url 'keyboards' 'Synthesizer' %}" class="dropdown-item">Synthesizers</a>
+                <a href="{% url 'keyboards' 'Workstation' %}" class="dropdown-item">Workstations</a>
+                <a href="{% url 'keyboards' 'MIDI Keyboard' %}" class="dropdown-item">MIDI Controllers</a>
             </div>
         </div>
     </div>
@@ -84,10 +84,10 @@
             <div class="dropdown-content">
                 <a href="/wind-instruments/" class="dropdown-item">Wind Instruments</a>
                 <hr class="dropdown-divider" />
-                <a href="/wind-instruments/flutes" class="dropdown-item">Flutes</a>
-                <a href="/wind-instruments/clarinets" class="dropdown-item">Clarinets</a>
-                <a href="/wind-instruments/saxophones" class="dropdown-item">Saxophones</a>
-                <a href="/wind-instruments/trumpets" class="dropdown-item">Trumpets</a>
+                <a href="{% url 'wind-instruments' 'Flute' %}" class="dropdown-item">Flutes</a>
+                <a href="{% url 'wind-instruments' 'Clarinet' %}" class="dropdown-item">Clarinets</a>
+                <a href="{% url 'wind-instruments' 'Saxophone' %}" class="dropdown-item">Saxophones</a>
+                <a href="{% url 'wind-instruments' 'Trumpet' %}" class="dropdown-item">Trumpets</a>
             </div>
         </div>
     </div>

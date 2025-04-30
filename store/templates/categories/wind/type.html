@@ -1,41 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Strings{% endblock %}
+{% block title %}Wind Instruments{% endblock %}
 
 {% block content %}
 <div class="categories m-auto">
     <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile">
         <div class="grid">
             <div class="category">
-                <a href="{% url 'strings' 'Electric Guitar' %}">
-                    <img src="{% static 'img/strings.png' %}" alt="Electric Guitars" class="category-image">
-                    <p class="category-text">Electric Guitars</p>
+                <a href="{% url 'wind-instruments' 'Flute' %}">
+                    <img src="{% static 'img/flutes.png' %}" alt="Flutes" class="category-image">
+                    <p class="category-text">Flutes</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'strings' 'Acoustic Guitar' %}">
-                    <img src="{% static 'img/acoustic.png' %}" alt="Acoustic Guitars" class="category-image">
-                    <p class="category-text">Acoustic Guitars</p>
+                <a href="{% url 'wind-instruments' 'Clarinet' %}">
+                    <img src="{% static 'img/clarinets.png' %}" alt="Clarinets" class="category-image">
+                    <p class="category-text">Clarinets</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'strings' 'Violin' %}">
-                    <img src="{% static 'img/violins.png' %}" alt="Violins" class="category-image">
-                    <p class="category-text">Violins</p>
+                <a href="{% url 'wind-instruments' 'Saxophone' %}">
+                    <img src="{% static 'img/saxophones.png' %}" alt="Saxophones" class="category-image">
+                    <p class="category-text">Saxophones</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'strings' 'Bass Guitars' %}">
-                    <img src="{% static 'img/bass.png' %}" alt="Bass Guitars" class="category-image">
-                    <p class="category-text">Bass Guitars</p>
+                <a href="{% url 'wind-instruments' 'Trumpet' %}">
+                    <img src="{% static 'img/wind-instruments.png' %}" alt="Trumpets" class="category-image">
+                    <p class="category-text">Trumpets</p>
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-<h1 class="is-size-1 has-text-weight-bold">All Stringed Instruments</h1>
+<h1 class="is-size-1 has-text-weight-bold">{{ type }}s</h1>
 <hr>
 
 <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">
