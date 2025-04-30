@@ -8,7 +8,8 @@
     <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile">
         <div class="grid">
             <div class="category">
-                <a href="{% url 'keyboards' 'Electric Piano' %}">                    <img src="{% static 'img/digital-pianos.png' %}" alt="Digital Pianos" class="category-image">
+                <a href="{% url 'keyboards' 'Electric Piano' %}">
+                    <img src="{% static 'img/digital-pianos.png' %}" alt="Digital Pianos" class="category-image">
                     <p class="category-text">Digital Pianos</p>
                 </a>
             </div>
@@ -33,6 +34,9 @@
         </div>
     </div>
 </div>
+<a href="../">
+    <button class="button clear-filters is-warning">Clear filters</button>
+</a>
 
 <h1 class="is-size-1 has-text-weight-bold">{{ type }}s</h1>
 <hr>

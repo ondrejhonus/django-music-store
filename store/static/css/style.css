@@ -97,3 +97,10 @@ input .search {
 a.button {
     max-width: fit-content !important;
 }
+
+.clear-filters{
+    position: fixed !important;
+    right: 0;
+    bottom: 0;
+    margin: 1em !important;
+}
