@@ -1,12 +1,20 @@
 from django.db import models
-from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, MaxLengthValidator, URLValidator
 
 # Create your models here.
 
 class InstrumentCategory(models.Model):
-    name = models.CharField(max_length=30)
-    description = models.TextField()
-
+    name = models.CharField(
+        max_length=30,
+        help_text="Enter the name of the instrument category (max 30 characters)",
+        validators=[
+            MinLengthValidator(2, "Category name must be at least 2 characters long."),
+            MaxLengthValidator(30, "Category name cannot exceed 30 characters.")
+        ]
+    )
+    description = models.TextField(
+        help_text="Provide a description of the instrument category."
+    )
     def __str__(self):
         return self.name
 
@@ -14,8 +22,14 @@ class InstrumentType(models.Model):
     name = models.CharField(
         max_length=30,
         help_text="Enter the type of instrument (max 30 characters)",
+                validators=[
+            MinLengthValidator(2, "Category name must be at least 2 characters long."),
+            MaxLengthValidator(30, "Category name cannot exceed 30 characters.")
+        ]
         )
-    description = models.TextField()
+    description = models.TextField(
+        help_text="Provide a description of the instrument type."
+    )
 
     def __str__(self):
         return self.name
@@ -26,15 +40,17 @@ class Instruments(models.Model):
         max_length=30,
         help_text="Enter the brand name of the instrument (max 30 characters)",
         validators = [
-            MinLengthValidator(2, "Brand name must be at least 2 characters long.")
+            MinLengthValidator(2, "Brand name must be at least 2 characters long."),
+            MaxLengthValidator(30, "Brand name cannot exceed 30 characters"),
         ]
     )
     model = models.CharField(
         max_length=20,
         help_text="Enter the model name of the instrument (max 20 characters)",
         validators=[
-            MinLengthValidator(2, "Model name must be at least 2 characters long.")
-        ]
+            MinLengthValidator(2, "Model name must be at least 2 characters long."),
+            MaxLengthValidator(20, "Model name cannot exceed 20 characters")
+        ],
     )
     description = models.TextField(
         help_text="Provide a detailed description of the instrument."
@@ -78,10 +94,37 @@ class Instruments(models.Model):
     
 
     class Manufacturer(models.Model):
-        name = models.CharField(max_length=50, unique=True)
-        country = models.CharField(max_length=50, blank=True, null=True)
-        description = models.TextField()
-        website = models.URLField(max_length=200, blank=True, null=True)
+        name = models.CharField(
+            max_length=50,
+            unique=True,
+            help_text="Enter a name of the manufacturer",
+            validators=[
+                MinLengthValidator(2, "Manufacturer name must be at least 2 characters long."),
+                MaxLengthValidator(50, "Manufacturer name cannot exceed 50 characters.")
+            ]
+            )
+        country = models.CharField(
+            max_length=50, 
+            blank=True, 
+            null=True,
+            help_text="Enter the manufacturer origin country",
+                        validators=[
+                MinLengthValidator(2, "Manufacturer country must be at least 2 characters long."),
+                MaxLengthValidator(50, "Manufacturer country cannot exceed 50 characters.")
+            ]
+            )
+        description = models.TextField(
+            help_text="Type the manufacturer description"
+        )
+        website = models.URLField(
+            max_length=200, 
+            blank=True, 
+            null=True,
+            help_text="Enter the URL of the manufacturer website",
+            validators=[
+                URLValidator(message="Enter a valid URL including 'http[s]://'.")
+            ]
+            )
 
         def __str__(self):
             return self.name
