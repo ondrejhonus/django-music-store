@@ -10,7 +10,7 @@ class InstrumentCategory(models.Model):
         validators=[
             MinLengthValidator(2, "Category name must be at least 2 characters long."),
             MaxLengthValidator(30, "Category name cannot exceed 30 characters.")
-        ]
+        ],
     )
     description = models.TextField(
         help_text="Provide a description of the instrument category."
@@ -26,19 +26,18 @@ class InstrumentType(models.Model):
     name = models.CharField(
         max_length=30,
         help_text="Enter the type of instrument (max 30 characters)",
-                validators=[
+        validators=[
             MinLengthValidator(2, "Category name must be at least 2 characters long."),
             MaxLengthValidator(30, "Category name cannot exceed 30 characters.")
         ]
-        )
-    category = models.ForeignKey(InstrumentCategory, on_delete=models.CASCADE),
+    )
+    category = models.ForeignKey('InstrumentCategory', on_delete=models.CASCADE, blank=True, null=True)
     description = models.TextField(
         help_text="Provide a description of the instrument type."
     )
 
     def __str__(self):
         return self.name
-
 
 class Instrument(models.Model):
     brand = models.CharField(
@@ -79,10 +78,6 @@ class Instrument(models.Model):
             MaxValueValidator(2100, "Year must be 2100 or earlier.")
         ]
     )
-    category = models.ManyToManyField(
-        InstrumentCategory,
-        help_text="Select one or more categories for this instrument."
-    )
     type = models.ManyToManyField(
         InstrumentType,
         help_text="Select one or more types for this instrument."
@@ -108,41 +103,40 @@ class Instrument(models.Model):
 
     def __str__(self):
         return self.brand + ' ' + self.model
-    
 
-    class Manufacturer(models.Model):
-        name = models.CharField(
-            max_length=50,
-            unique=True,
-            help_text="Enter a name of the manufacturer",
-            validators=[
-                MinLengthValidator(2, "Manufacturer name must be at least 2 characters long."),
-                MaxLengthValidator(50, "Manufacturer name cannot exceed 50 characters.")
-            ]
-            )
-        country = models.CharField(
-            max_length=50, 
-            blank=True, 
-            null=True,
-            help_text="Enter the manufacturer origin country",
-                        validators=[
-                MinLengthValidator(2, "Manufacturer country must be at least 2 characters long."),
-                MaxLengthValidator(50, "Manufacturer country cannot exceed 50 characters.")
-            ]
-            )
-        description = models.TextField(
-            help_text="Type the manufacturer description"
-        )
-        website = models.URLField(
-            max_length=200, 
-            blank=True, 
-            null=True,
-            help_text="Enter the URL of the manufacturer website",
-            validators=[
-                URLValidator(message="Enter a valid URL including 'http[s]://'.")
-            ]
-            )
 
-        def __str__(self):
-            return self.name
-        
+class Manufacturer(models.Model):
+    name = models.CharField(
+        max_length=50,
+        unique=True,
+        help_text="Enter a name of the manufacturer",
+        validators=[
+            MinLengthValidator(2, "Manufacturer name must be at least 2 characters long."),
+            MaxLengthValidator(50, "Manufacturer name cannot exceed 50 characters.")
+        ]
+    )
+    country = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True,
+        help_text="Enter the manufacturer origin country",
+        validators=[
+            MinLengthValidator(2, "Manufacturer country must be at least 2 characters long."),
+            MaxLengthValidator(50, "Manufacturer country cannot exceed 50 characters.")
+        ]
+    )
+    description = models.TextField(
+        help_text="Type the manufacturer description"
+    )
+    website = models.URLField(
+        max_length=200, 
+        blank=True, 
+        null=True,
+        help_text="Enter the URL of the manufacturer website",
+        validators=[
+            URLValidator(message="Enter a valid URL including 'http[s]://'.")
+        ]
+    )
+
+    def __str__(self):
+        return self.name
