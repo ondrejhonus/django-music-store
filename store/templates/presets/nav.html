@@ -1,53 +1,94 @@
+<style>
+    .dropdown button {
+        border: none !important;
+        background-color: transparent !important;
+        color: inherit !important;
+        box-shadow: none !important;
+    }
+</style>
+
 <div class="container">
-<nav class="navbar m-auto" role="navigation" aria-label="main navigation">
-    <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Strings
-            </a>
-            <div class="navbar-dropdown">
-                <a class="navbar-item" href="/strings/guitars">Guitars</a>
-                <a class="navbar-item" href="/strings/violins">Violins</a>
-                <a class="navbar-item" href="/strings/cellos">Cellos</a>
-                <a class="navbar-item" href="/strings/basses">Basses</a>
-            </div>
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-strings">
+                <span>Strings</span>
+                <span class="icon is-small"></span>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
         </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Percussion
-            </a>
-            <div class="navbar-dropdown">
-                <a class="navbar-item" href="/percussion/drums">Drums</a>
-                <a class="navbar-item" href="/percussion/cymbals">Cymbals</a>
-                <a class="navbar-item" href="/percussion/tambourines">Tambourines</a>
-                <a class="navbar-item" href="/percussion/xylophones">Xylophones</a>
-            </div>
-        </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Keyboards
-            </a>
-            <div class="navbar-dropdown">
-                <a class="navbar-item" href="/keyboards/pianos">Pianos</a>
-                <a class="navbar-item" href="/keyboards/organs">Organs</a>
-                <a class="navbar-item" href="/keyboards/synthesizers">Synthesizers</a>
-                <a class="navbar-item" href="/keyboards/electric-keyboards">Electric Keyboards</a>
-            </div>
-        </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Wind Instruments
-            </a>
-            <div class="navbar-dropdown">
-                <a class="navbar-item" href="/wind-instruments/flutes">Flutes</a>
-                <a class="navbar-item" href="/wind-instruments/clarinets">Clarinets</a>
-                <a class="navbar-item" href="/wind-instruments/saxophones">Saxophones</a>
-                <a class="navbar-item" href="/wind-instruments/trumpets">Trumpets</a>
+        <div class="dropdown-menu" id="dropdown-menu-strings" role="menu">
+            <div class="dropdown-content">
+                <a href="/strings/" class="dropdown-item">Strings</a>
+                <hr class="dropdown-divider" />
+                <a href="/strings/guitars" class="dropdown-item">Guitars</a>
+                <a href="/strings/violins" class="dropdown-item">Violins</a>
+                <a href="/strings/cellos" class="dropdown-item">Cellos</a>
+                <a href="/strings/basses" class="dropdown-item">Basses</a>
             </div>
         </div>
     </div>
-</nav>
+
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-percussion">
+                <span>Percussion</span>
+                <span class="icon is-small">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu-percussion" role="menu">
+            <div class="dropdown-content">
+                <a href="/percussion/" class="dropdown-item">Percussion</a>
+                <hr class="dropdown-divider" />
+                <a href="/percussion/drums" class="dropdown-item">Drums</a>
+                <a href="/percussion/cymbals" class="dropdown-item">Cymbals</a>
+                <a href="/percussion/tambourines" class="dropdown-item">Tambourines</a>
+                <a href="/percussion/xylophones" class="dropdown-item">Xylophones</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-keyboards">
+                <span>Keyboards</span>
+                <span class="icon is-small">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu-keyboards" role="menu">
+            <div class="dropdown-content">
+                <a href="/keyboards/" class="dropdown-item">Keyboards</a>
+                <hr class="dropdown-divider" />
+                <a href="/keyboards/pianos" class="dropdown-item">Pianos</a>
+                <a href="/keyboards/organs" class="dropdown-item">Organs</a>
+                <a href="/keyboards/synthesizers" class="dropdown-item">Synthesizers</a>
+                <a href="/keyboards/electric-keyboards" class="dropdown-item">Electric Keyboards</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-wind">
+                <span>Wind Instruments</span>
+                <span class="icon is-small">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu-wind" role="menu">
+            <div class="dropdown-content">
+                <a href="/wind-instruments/" class="dropdown-item">Wind Instruments</a>
+                <hr class="dropdown-divider" />
+                <a href="/wind-instruments/flutes" class="dropdown-item">Flutes</a>
+                <a href="/wind-instruments/clarinets" class="dropdown-item">Clarinets</a>
+                <a href="/wind-instruments/saxophones" class="dropdown-item">Saxophones</a>
+                <a href="/wind-instruments/trumpets" class="dropdown-item">Trumpets</a>
+            </div>
+        </div>
+    </div>
 </div>

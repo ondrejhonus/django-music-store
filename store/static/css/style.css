@@ -10,6 +10,19 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
+.container.main-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    margin: auto !important;
+}
+
+.navbar-end {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
 img.item {
     width: 100% !important;
     height: 25em !important;
@@ -75,4 +88,12 @@ img.item {
 
 .category {
     position: relative; /* Add this to make .category the positioning context */
+}
+
+input .search {
+    padding: 0 5em !important;
+}
+
+a.button {
+    max-width: fit-content !important;
 }

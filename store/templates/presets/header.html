@@ -1,17 +1,20 @@
 <div class="navbar is-info">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
+    <div class="container main-nav">
+        <div class="navbar-brand ">
+            <a class="navbar-item is-hidden-mobile" href="/">
                 <p class="is-size-1 has-text-weight-bold">Music store</p>
             </a>
         </div>
-        <div class="navbar-start m-auto">
-            <form class="navbar-item" action="/search/" method="get">
-                <input class="input" type="text" name="q" placeholder="Search for instruments">
-                <button class="button" type="submit">Search</button>
-            </form>
-        </div>
         <div class="navbar-end">
+            <div class="search">
+                <form class="navbar-item m-0" action="/search/" method="get">
+                    <input class="input" type="text" name="q" placeholder="Search for instruments" required>
+                    <button class="button box is-white p-auto is-hidden-mobile" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
             <div class="navbar-item m-0">
                 <a class="button box has-background-warning" href="/cart/">
                     <i class="fa fa-shopping-cart"></i>
