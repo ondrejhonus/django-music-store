@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Percussion{% endblock %}
+
+{% block content %}
+<div class="categories m-auto">
+    <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile">
+        <div class="grid">
+            <div class="category">
+                <a href="./drum-kits/"></a>
+                    <img src="{% static 'img/drum-kits.png' %}" alt="Drum Kits" class="category-image">
+                    <p class="category-text">Drum Kits</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="./cymbals/"></a>
+                    <img src="{% static 'img/cymbals.png' %}" alt="Cymbals" class="category-image">
+                    <p class="category-text">Cymbals</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="./congas/"></a>
+                    <img src="{% static 'img/congas.png' %}" alt="Congas" class="category-image">
+                    <p class="category-text">Congas</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="./tambourines/">
+                    <img src="{% static 'img/tambourines.png' %}" alt="Tambourines" class="category-image">
+                    <p class="category-text">Tambourines</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="is-size-1 has-text-weight-bold">All Percussion Instruments</h1>
+<hr>
+
+<div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">
+    <div class="grid is-gap-4 m-auto">
+        {% for instrument in instruments %}
+        <a href="#">
+            <div class="card m-auto">
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="{{ instrument.image.url }}" alt="{{ instrument.name }}" class="item">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">{{ instrument.brand }}</p>
+                            <p class="subtitle is-6">{{ instrument.model }}</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="has-text-weight-bold is-size-5 has-text-primary">${{ instrument.price }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
