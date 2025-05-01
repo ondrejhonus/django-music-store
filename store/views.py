@@ -1,28 +1,25 @@
 from django.shortcuts import render
 from .models import Instrument, InstrumentCategory, InstrumentType
 
-def make_slug(string):
-    slug = string.replace(' ', '-').lower()
-    slug = slug.replace('\'', '')
-    slug = slug.replace('\"', '')
-    slug = slug.replace('!', '')
-    slug = slug.replace('?', '')
-    slug = slug.replace('.', '')
-    slug = slug.replace(',', '')
-    slug = slug.replace('(', '')
-    slug = slug.replace(')', '')
-    slug = slug.replace(':', '')
-    slug = slug.replace(';', '')
-    return slug
-
-# Create your views here.
-
 def index(request):
     instruments = Instrument.objects.all().order_by('year').reverse()
     context = {
-        'instruments': instruments
+        'instruments': instruments,
         }
     return render(request, 'index.html', context=context)
+
+def instrument_detail(request, cat, slug):
+    if not InstrumentType.objects.filter(category__slug=cat).exists():
+        return render(request, '404.html')
+    if not Instrument.objects.filter(type__category__slug=cat, slug=slug).exists():
+        return render(request, '404.html')
+    instrument = Instrument.objects.get(type__category__slug=cat, slug=slug)
+    context = {
+        'instrument': instrument,
+        'category': InstrumentCategory.objects.get(slug=cat),
+        }
+    return render(request, 'instruments/detail.html', context=context)
+
 
 ##################################################
 ################### STRINGS ######################
@@ -44,18 +41,6 @@ def string_type(request, type):
         'type': InstrumentType.objects.get(slug=type).name,
         }
     return render(request, 'categories/strings/type.html', context=context)
-
-def instrument_detail(request, cat, slug):
-    if not InstrumentType.objects.filter(category__slug=cat).exists():
-        return render(request, '404.html')
-    if not Instrument.objects.filter(type__category__slug=cat, slug=slug).exists():
-        return render(request, '404.html')
-    instrument = Instrument.objects.get(type__category__slug=cat, slug=slug)
-    context = {
-        'instrument': instrument,
-        'category': InstrumentCategory.objects.get(slug=cat),
-        }
-    return render(request, 'instruments/detail.html', context=context)
 
 ###############################################
 ################# PERCUSSION ###################

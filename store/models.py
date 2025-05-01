@@ -105,8 +105,11 @@ class Instrument(models.Model):
             MaxValueValidator(2100, "Year must be 2100 or earlier.")
         ]
     )
-    type = models.ManyToManyField(
+    type = models.ForeignKey(
         InstrumentType,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
         help_text="Select one or more types for this instrument."
     )
     image = models.ImageField(

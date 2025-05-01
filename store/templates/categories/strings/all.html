@@ -41,23 +41,22 @@
 <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">
     <div class="grid is-gap-4 m-auto">
         {% for instrument in instruments %}
-        <a href="{% url 'instrument_detail' 'strings' instrument.slug %}">
+        <a href="{% url 'instrument_detail' instrument.type.category.slug instrument.slug %}" class="card-link">
             <div class="card m-auto">
                 <div class="card-image">
                     <figure class="image">
                         <img src="{{ instrument.image.url }}" alt="{{ instrument.name }}" class="item">
                     </figure>
                 </div>
-                <div class="card-content">
-                    <div class="media">
-                        <div class="media-content">
-                            <p class="title is-4">{{ instrument.brand }}</p>
-                            <p class="subtitle is-6">{{ instrument.model }}</p>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <p class="has-text-weight-bold is-size-5 has-text-primary">${{ instrument.price }}</p>
-                    </div>
+                <div class="card-content m-0">
+                    <p class="title is-5 m-0">{{ instrument.brand }}</p>
+                    <p class="subtitle is-6 m-0">{{ instrument.model }}</p>
+                    <p class="has-text-weight-bold is-size-5 has-text-danger absolute-bottom-left">${{ instrument.price }}</p>
+                    {% if instrument.stock > 0 %}
+                    <p class="has-text-weight-bold is-size-5 has-text-primary absolute-bottom-right">In Stock</p>
+                    {% else %}
+                    <p class="has-text-weight-bold is-size-5 has-text-danger absolute-bottom-right">Out of Stock</p>
+                    {% endif %}
                 </div>
             </div>
         </a>
