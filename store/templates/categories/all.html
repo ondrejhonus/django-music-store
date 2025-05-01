@@ -1,42 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Keyboards{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
 
 {% block content %}
 <div class="categories m-auto">
     <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile">
         <div class="grid">
+            {% for type in types %}
             <div class="category">
-                <a href="{% url 'keyboards' 'electric-piano' %}">
-                    <img src="{% static 'img/digital-pianos.png' %}" alt="Digital Pianos" class="category-image">
-                    <p class="category-text">Digital Pianos</p>
+                <a href="{% url 'instrument_type' type.category.slug type.slug %}">
+                    <img src="{% static 'img/' %}{{ type.slug }}.png" alt="{{ type.name }}" class="category-image">
+                    <p class="category-text">{{ type.name }}</p>
                 </a>
             </div>
-            <div class="category">
-                <a href="{% url 'keyboards' 'synthesizer' %}">
-                    <img src="{% static 'img/synthesizers.png' %}" alt="Synthesizers" class="category-image">
-                    <p class="category-text">Synthesizers</p>
-                </a>
-            </div>
-            <div class="category">
-                <a href="{% url 'keyboards' 'workstation' %}">
-                    <img src="{% static 'img/workstations.png' %}" alt="Workstations" class="category-image">
-                    <p class="category-text">Workstations</p>
-                </a>
-            </div>
-            <div class="category">
-                <a href="{% url 'keyboards' 'midi-keyboard' %}">
-                    <img src="{% static 'img/midi-controllers.png' %}" alt="MIDI Controllers" class="category-image">
-                    <p class="category-text">MIDI Controllers</p>
-                </a>
-            </div>
-            </a>
+            {% endfor %}
         </div>
     </div>
 </div>
 
-<h1 class="is-size-1 has-text-weight-bold">All Keyboards</h1>
+<h1 class="is-size-1 has-text-weight-bold">All {{ category.name }}</h1>
 <hr>
 
 <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">

@@ -4,6 +4,14 @@
 {% block title %}Music store{% endblock %}
 
 {% block content %}
+<nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'instrument' category.slug %}">{{ category.name }}</a></li>
+        <li><a href="{% url 'instrument_type' category.slug type.slug %}">{{ instrument.type.name }}s</a></li>
+        <li><span class="has-text-grey-dark ml-3">{{ instrument.brand }} {{ instrument.model }}</span></li>
+    </ul>
+</nav>
 
 <h1 class="is-size-1 has-text-weight-bold">{{ instrument.brand }} {{ instrument.model }}</h1>
 
