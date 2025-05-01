@@ -4,12 +4,13 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('instruments/<slug:cat>/<slug:slug>/', views.instrument_detail, name='instrument_detail'),
     path('strings/', views.strings, name='strings'),
-    path('strings/<str:type>/', views.string_type, name='strings'),
+    path('strings/<slug:type>/', views.string_type, name='strings'),
     path('percussion/', views.percussion, name='percussion'),
-    path('percussion/<str:type>/', views.percussion_type, name='percussion'),
+    path('percussion/<slug:type>/', views.percussion_type, name='percussion'),
     path('keyboards/', views.keyboards, name='keyboards'),
-    path('keyboards/<str:type>/', views.keyboard_type, name='keyboards'),
+    path('keyboards/<slug:type>/', views.keyboard_type, name='keyboards'),
     path('wind-instruments/', views.wind, name='wind'),
-    path('wind-instruments/<str:type>/', views.wind_type, name='wind-instruments'),
+    path('wind-instruments/<slug:type>/', views.wind_type, name='wind-instruments'),
 ]

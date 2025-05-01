@@ -8,25 +8,25 @@
     <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile">
         <div class="grid">
             <div class="category">
-                <a href="{% url 'percussion' 'Drum Kit' %}">
+                <a href="{% url 'percussion' 'drum-kit' %}">
                     <img src="{% static 'img/drum-kits.png' %}" alt="Drum Kits" class="category-image">
                     <p class="category-text">Drum Kits</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'percussion' 'Cymbal' %}">
+                <a href="{% url 'percussion' 'cymbal' %}">
                     <img src="{% static 'img/cymbals.png' %}" alt="Cymbals" class="category-image">
                     <p class="category-text">Cymbals</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'percussion' 'Conga' %}">
+                <a href="{% url 'percussion' 'conga' %}">
                     <img src="{% static 'img/congas.png' %}" alt="Congas" class="category-image">
                     <p class="category-text">Congas</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'percussion' 'Tambourine' %}">
+                <a href="{% url 'percussion' 'tambourine' %}">
                     <img src="{% static 'img/tambourines.png' %}" alt="Tambourines" class="category-image">
                     <p class="category-text">Tambourines</p>
                 </a>
@@ -44,7 +44,7 @@
 <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">
     <div class="grid is-gap-4 m-auto">
         {% for instrument in instruments %}
-        <a href="#">
+        <a href="{% url 'instrument_detail' 'percussion' instrument.slug %}">
             <div class="card m-auto">
                 <div class="card-image">
                     <figure class="image">

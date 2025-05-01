@@ -15,6 +15,15 @@ class InstrumentCategory(models.Model):
     description = models.TextField(
         help_text="Provide a description of the instrument category."
     )
+    slug = models.SlugField(
+        max_length=50,
+        unique=True,
+        help_text="Enter a unique slug for the category (max 50 characters)",
+        validators=[
+            MinLengthValidator(2, "Slug must be at least 2 characters long."),
+            MaxLengthValidator(50, "Slug cannot exceed 50 characters.")
+        ],
+    )
 
     class Meta:
         verbose_name_plural = "Instrument Categories"
@@ -35,6 +44,15 @@ class InstrumentType(models.Model):
     description = models.TextField(
         help_text="Provide a description of the instrument type."
     )
+    slug = models.SlugField(
+        max_length=50,
+        unique=True,
+        help_text="Enter a unique slug for the type (max 50 characters)",
+        validators=[
+            MinLengthValidator(2, "Slug must be at least 2 characters long."),
+            MaxLengthValidator(50, "Slug cannot exceed 50 characters.")
+        ],
+    )
 
     def __str__(self):
         return self.name
@@ -46,7 +64,7 @@ class Instrument(models.Model):
         validators = [
             MinLengthValidator(2, "Brand name must be at least 2 characters long."),
             MaxLengthValidator(30, "Brand name cannot exceed 30 characters"),
-        ]
+        ],
     )
     model = models.CharField(
         max_length=100,
@@ -54,6 +72,15 @@ class Instrument(models.Model):
         validators=[
             MinLengthValidator(2, "Model name must be at least 2 characters long."),
             MaxLengthValidator(100, "Model name cannot exceed 100 characters")
+        ],
+    )
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        help_text="Enter a unique slug for the instrument (max 100 characters)",
+        validators=[
+            MinLengthValidator(2, "Slug must be at least 2 characters long."),
+            MaxLengthValidator(100, "Slug cannot exceed 100 characters.")
         ],
     )
     color = models.CharField(

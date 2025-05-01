@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Music store{% endblock %}
+
+{% block content %}
+
+<h1 class="is-size-1 has-text-weight-bold">{{ instrument.brand }} {{ instrument.model }}</h1>
+
+<div class="columns">
+    <!-- Left column: Name and picture -->
+    <div class="column is-half">
+        <img class="is-size-2" src="{{ instrument.image.url }}" alt="{{ instrument.name }}">
+    </div>
+
+    <!-- Right column: Details -->
+    <div class="column is-half is-outlined">
+        <p class="is-size-5">{{ instrument.description }}</p>
+        <hr>
+        <p class="is-size-4 has-text-weight-bold has-text-danger">${{ instrument.price }} <span class="has-text-grey-light is-size-7">without tax</span></p>
+        {% if instrument.stock > 0 %}
+        <p class="has-text-info is-size-5">{{ instrument.stock }} in stock</p>
+        {% else %}
+        <p class="has-text-danger is-size-5">Out of stock</p>
+        {% endif %}
+        <hr>
+        <div class="content mb-6">
+        <ul class="list">
+            <li>Brand: {{ instrument.brand }}</li>
+            <li>Model: {{ instrument.model }}</li>
+            {% if instrument.color %}
+            <li>Color: {{ instrument.color }}</li>
+            {% endif %}
+            {% if instrument.year %}
+            <li>Year: {{ instrument.year }}</li>
+            {% endif %}
+        </ul>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -8,28 +8,30 @@
     <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile">
         <div class="grid">
             <div class="category">
-                <a href="{% url 'keyboards' 'Electric Piano' %}">                    <img src="{% static 'img/digital-pianos.png' %}" alt="Digital Pianos" class="category-image">
+                <a href="{% url 'keyboards' 'electric-piano' %}">
+                    <img src="{% static 'img/digital-pianos.png' %}" alt="Digital Pianos" class="category-image">
                     <p class="category-text">Digital Pianos</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'keyboards' 'Synthesizer' %}">
+                <a href="{% url 'keyboards' 'synthesizer' %}">
                     <img src="{% static 'img/synthesizers.png' %}" alt="Synthesizers" class="category-image">
                     <p class="category-text">Synthesizers</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'keyboards' 'Workstation' %}">
+                <a href="{% url 'keyboards' 'workstation' %}">
                     <img src="{% static 'img/workstations.png' %}" alt="Workstations" class="category-image">
                     <p class="category-text">Workstations</p>
                 </a>
             </div>
             <div class="category">
-                <a href="{% url 'keyboards' 'MIDI Keyboard' %}">
+                <a href="{% url 'keyboards' 'midi-keyboard' %}">
                     <img src="{% static 'img/midi-controllers.png' %}" alt="MIDI Controllers" class="category-image">
                     <p class="category-text">MIDI Controllers</p>
                 </a>
             </div>
+            </a>
         </div>
     </div>
 </div>
@@ -40,7 +42,7 @@
 <div class="fixed-grid has-4-cols-desktop has-1-cols-mobile m-auto mt-6">
     <div class="grid is-gap-4 m-auto">
         {% for instrument in instruments %}
-        <a href="#">
+        <a href="{% url 'instrument_detail' 'keyboards' instrument.slug %}">
             <div class="card m-auto">
                 <div class="card-image">
                     <figure class="image">
