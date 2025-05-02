@@ -5,8 +5,7 @@ Welcome to the **Django Music Store**! This is a web application built using **D
 ## Requirements
 
 - Python 3.x
-- Django 4.x
-- MySQL 8.x
+- Pip
 - Other dependencies listed in `requirements.txt`
 
 ## Installation
@@ -16,13 +15,22 @@ Welcome to the **Django Music Store**! This is a web application built using **D
     git clone https://github.com/ondrejhonus/django-music-store.git
     cd django-music-store
     ```
-2. Create a virtual enviroment (linux)
+2. Create a virtual enviroment
+- **Linux:**
     ```bash
     python -m venv .venv
     ```
     And activate it
     ```bash
     source .venv/bin/activate
+    ```
+- **Windows:**
+    ```bash
+    python -m venv .venv
+    ```
+    And activate it:
+    ```bash
+    .venv\Scripts\activate
     ```
 
 3. Install dependencies:
@@ -42,10 +50,11 @@ Welcome to the **Django Music Store**! This is a web application built using **D
 
 6. Access the application at http://127.0.0.1:8000 or `http://127.0.0.1:CUSTOM_PORT`.
 
-## Admin login
+## Existing users
+#### Admin
 - username: **admin**
 - password: **admin**
 
-## Editor login
+#### Editor
 - username: **editor**
 - password: **update123**
