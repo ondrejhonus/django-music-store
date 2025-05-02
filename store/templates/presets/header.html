@@ -10,7 +10,7 @@
                 <form class="navbar-item m-0" action="{% url 'search' %}" method="post">
                     {% csrf_token %}
                     <input class="input" type="text" name="search" placeholder="Search for instruments" required>
-                    <button class="button box is-white p-auto is-hidden-mobile" type="submit">
+                    <button class="button box p-auto is-hidden-mobile" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>
@@ -60,9 +60,10 @@
                 const savedTheme = localStorage.getItem('theme');
                 if (savedTheme === 'light') {
                     document.documentElement.classList.add('theme-light');
+                    document.documentElement.classList.remove('theme-dark');
                 }
                 else {
-                    document.documentElement.classList.add('theme-light');
+                    document.documentElement.classList.remove('theme-light');
                 }
             });
         </script>
