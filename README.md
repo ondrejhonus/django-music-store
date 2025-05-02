@@ -8,6 +8,17 @@ Welcome to the **Django Music Store**! This is a web application built using **D
 - Pip
 - Other dependencies listed in `requirements.txt`
 
+## Functions
+- Browse the music store
+- Search by brand and model name
+- Register as a user
+- Login / Logout in the user dashboard
+
+**If you have the permissions:**
+- Add a new instrument
+- Update an existing instrument
+- Delete an existing instrument
+
 ## Installation
 
 1. Clone the repository:
