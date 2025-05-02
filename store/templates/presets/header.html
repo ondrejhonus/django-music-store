@@ -15,11 +15,16 @@
                 </form>
             </div>
 
+            {% for group in user.groups.all %}
+            {% if group.name == 'editor' %}
             <div class="navbar-item m-0">
-                <a class="button box has-background-warning" href="/cart/">
-                    <i class="fa fa-shopping-cart"></i>
+                <a class="button box has-background-success" href="{% url 'instrument_create' %}">
+                    <i class="fa fa-plus"></i>
                 </a>
             </div>
+
+            {% endif %}
+            {% endfor %}
             <div class="navbar-item m-0">
                 <button class="button box" id="theme-switcher" onclick="toggleTheme()">
                     <i class="fa fa-adjust"></i>

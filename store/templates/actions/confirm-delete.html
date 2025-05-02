@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+<h1 class="is-size-1 has-text-weight-bold">Confirm Delete</h1>
+<div class="box has-text-left is-size-5 content">
+    <p>Are you sure you want to delete this item?</p>
+    <p><strong>{{ instrument.brand }} {{ instrument.model }}</strong></p>
+    <img src="{{ instrument.image.url }}" alt="{{ instrument.name }}" class="image img-delete">
+</div>
+<form method="POST" action="{% url 'instrument_delete' instrument.type.category.slug instrument.slug %}">
+    {% csrf_token %}
+    <button type="submit" class="button is-danger">Delete</button>
+    <a href="{% url 'instrument' instrument.type.category.slug %}" class="button is-success">Go back</a>
+</form>
+
+{% endblock %}

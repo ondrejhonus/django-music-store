@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h1 class="is-size-1 has-text-weight-bold">Register</h1>
+<div class="box has-text-left is-size-5 content">
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button is-primary">Register</button>
+    </form>
+</div>
+<div class="content has-text-centered">
+    <h2 class="is-size-3">Already have an account?</h2>
+    <p><a href="{% url 'login' %}" class="is-size-4">Login here</a></p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User dashboard{% endblock %}
+
+{% block content %}
+<h1 class="is-size-1 has-text-weight-bold has-text-centered mb-6">User Dashboard</h1>
+<div class="box has-text-centered is-size-5 content">
+    <h2 class="is-size-3">Welcome, {{ user.username }}!</h2>
+    <p>Your email: {{ user.email }}</p>
+    <p>Last login: {{ user.last_login }}</p>
+    <p>Groups: {% for group in user.groups.all %}{{ group.name }} {% endfor %}</p>
+    <p><a href="{% url 'logout' %}" class="button is-danger">Logout</a></p>
+    <p><a href="{% url 'index' %}" class="button is-primary">Go to Home</a></p>
+</div>
+{% endblock %}

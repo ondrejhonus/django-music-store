@@ -118,3 +118,37 @@ a.button {
     right: 0 !important;
     margin: 1em !important;
 }
+
+.fixed-bottom-right {
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    margin: 1em !important;
+}
+
+.img-delete {
+    width: 20em !important;
+    object-fit: cover !important;
+}
+
+.file-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+.file-drop-area.is-dragover {
+    border-color: #3273dc;
+}
+.file-message {
+    font-size: 1rem;
+    color: #7a7a7a;
+}
+.file-name {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #363636;
+}

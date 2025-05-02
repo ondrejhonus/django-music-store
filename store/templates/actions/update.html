@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Instrument{% endblock %}
+
+{% block content %}
+<h1 class="is-size-1 has-text-weight-bold">Edit Instrument</h1>
+<div class="box">
+<form method="POST" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="notification is-danger">
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    {% for field in form %}
+    <div class="field">
+        <label class="label" for="{{ field.id_for_label }}">{{ field.label }} {% if field.field.required %}<span
+                class="has-text-danger">*</span>{% endif %}</label>
+        <div class="control">
+            {% if field.field.widget.input_type == "select" %}
+            <div class="select">
+                {{ field }}
+            </div>
+            {% elif field.field.widget.input_type == "text" %}
+            <input class="input" type="text" name="{{ field.html_name }}" id="{{ field.id_for_label }}" value="{{ field.value|default:'' }}">
+            {% elif field.field.widget.input_type == "number" %}
+            <input class="input" type="number" name="{{ field.html_name }}" id="{{ field.id_for_label }}" value="{{ field.value|default:'' }}">
+            {% elif field.field.widget.input_type == "file" %}
+            <div class="file-drop-area" id="file-drop-area-{{ field.id_for_label }}">
+                <span class="file-message">Drag & drop a file here or click to select</span>
+                <input class="file-input" type="file" name="{{ field.html_name }}" id="{{ field.id_for_label }}" onchange="updateFileName(this)" required>
+                <span class="file-name" id="file-name-{{ field.id_for_label }}">No file chosen</span>
+            </div>
+            <script>
+                const fileDropArea = document.getElementById('file-drop-area-{{ field.id_for_label }}');
+                const fileInput = document.getElementById('{{ field.id_for_label }}');
+                const fileNameSpan = document.getElementById('file-name-{{ field.id_for_label }}');
+
+                fileDropArea.addEventListener('click', () => fileInput.click());
+
+                fileDropArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    fileDropArea.classList.add('is-dragover');
+                });
+
+                fileDropArea.addEventListener('dragleave', () => {
+                    fileDropArea.classList.remove('is-dragover');
+                });
+
+                fileDropArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    fileDropArea.classList.remove('is-dragover');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        fileInput.files = files;
+                        fileNameSpan.textContent = files[0].name;
+                    }
+                });
+
+                fileInput.addEventListener('change', () => {
+                    if (fileInput.files && fileInput.files.length > 0) {
+                        fileNameSpan.textContent = fileInput.files[0].name;
+                    } else {
+                        fileNameSpan.textContent = "No file chosen";
+                    }
+                });
+            </script>
+            {% else %}
+            <textarea class="textarea" name="{{ field.html_name }}" id="{{ field.id_for_label }}">{{ field.value|default:'' }}</textarea>
+            {% endif %}
+        </div>
+        {% if field.errors %}
+        <p class="help is-danger">{{ field.errors }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+<div class="container is-flex is-flex-direction-row">
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary m-2" type="submit" style="min-width: 10em;">Save Changes</button>
+        </div>
+    </div>
+</form>
+<div class="field">
+    <div class="control">
+        <a class="button is-warning m-2" href="{% url 'instrument_detail' instrument.type.category.slug instrument.slug %}" style="min-width: 10em;">Go back</a>
+    </div>
+</div>
+</div>
+{% endblock %}
