@@ -7,8 +7,9 @@
         </div>
         <div class="navbar-end">
             <div class="search">
-                <form class="navbar-item m-0" action="/search/" method="get">
-                    <input class="input" type="text" name="q" placeholder="Search for instruments" required>
+                <form class="navbar-item m-0" action="{% url 'search' %}" method="post">
+                    {% csrf_token %}
+                    <input class="input" type="text" name="search" placeholder="Search for instruments" required>
                     <button class="button box is-white p-auto is-hidden-mobile" type="submit">
                         <i class="fa fa-search"></i>
                     </button>

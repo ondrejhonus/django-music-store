@@ -12,6 +12,22 @@ def index(request):
         }
     return render(request, 'index.html', context=context)
 
+def search(request):
+    if request.method == 'POST':
+        search_query = request.POST.get('search')
+        instruments = Instrument.objects.filter(
+            brand__icontains=search_query
+        ).union(
+            Instrument.objects.filter(model__icontains=search_query)
+        ).order_by('year').reverse()
+        context = {
+            'instruments': instruments,
+            'categories': InstrumentCategory.objects.all(),
+            }
+        return render(request, 'index.html', context=context)
+    else:
+        return redirect('index')
+
 def instrument(request, category_slug):
     instruments = Instrument.objects.all()
     context = {
