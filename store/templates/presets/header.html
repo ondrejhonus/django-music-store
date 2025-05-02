@@ -15,6 +15,20 @@
                 </form>
             </div>
 
+            {% if user.is_authenticated %}
+            <div class="navbar-item m-0">
+                <a class="button box has-background-warning" href="{% url 'dashboard' %}">
+                    <i class="fa fa-tachometer"></i>
+                </a>
+            </div>
+            {% else %}
+            <div class="navbar-item m-0">
+                <a class="button box has-background-success" href="{% url 'login' %}">
+                    <i class="fa fa-sign-in"></i>
+                </a>
+            </div>
+            {% endif %}
+
             {% for group in user.groups.all %}
             {% if group.name == 'editor' %}
             <div class="navbar-item m-0">
@@ -22,7 +36,6 @@
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
-
             {% endif %}
             {% endfor %}
             <div class="navbar-item m-0">

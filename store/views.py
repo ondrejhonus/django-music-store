@@ -45,6 +45,7 @@ def instrument_detail(request, cat, slug):
         'instrument': instrument,
         'category': InstrumentCategory.objects.get(slug=cat),
         'type': InstrumentType.objects.get(slug=instrument.type.slug),
+        'can_edit': request.user.is_staff or request.user.groups.filter(name='editor').exists(),
         }
     return render(request, 'instruments/detail.html', context=context)
 

@@ -42,6 +42,10 @@ Welcome to the **Django Music Store**! This is a web application built using **D
 
 6. Access the application at http://127.0.0.1:8000 or `http://127.0.0.1:CUSTOM_PORT`.
 
-## Default login
+## Admin login
 - username: **admin**
 - password: **admin**
+
+## Editor login
+- username: **editor**
+- password: **update123**

@@ -9,8 +9,8 @@
     <h2 class="is-size-3">Welcome, {{ user.username }}!</h2>
     <p>Your email: {{ user.email }}</p>
     <p>Last login: {{ user.last_login }}</p>
-    <p>Groups: {% for group in user.groups.all %}{{ group.name }} {% endfor %}</p>
-    <p><a href="{% url 'logout' %}" class="button is-danger">Logout</a></p>
-    <p><a href="{% url 'index' %}" class="button is-primary">Go to Home</a></p>
+    {% for group in user.groups.all %}<p>Groups: {{ group.name }} </p>{% endfor %}
+    <p><a href="{% url 'logout' %}" class="button is-danger" style="min-width: 10em;">Logout</a></p>
+    <p><a href="{% url 'index' %}" class="button is-primary" style="min-width: 10em;">Homepage</a></p>
 </div>
 {% endblock %}

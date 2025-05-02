@@ -48,16 +48,12 @@
     </div>
 </div>
 
-{% for group in user.groups.all %}
-{% if group.name == 'editor' %}
-<div class="fixed-bottom-right is-flex is-flex-direction-column is-align-items-flex-end ">
-    <a href="{% url 'instrument_update' instrument.type.category.slug instrument.slug %}"
-        class="button is-info is-light mb-2" style="min-width: 12em;">Edit Instrument</a>
-    <a href="{% url 'instrument_delete' instrument.type.category.slug instrument.slug %}"
-        class="button is-danger is-light" style="min-width: 12em;">Delete Instrument</a>
-</div>
+{% if can_edit %}
+  <div class="fixed-bottom-right is-flex is-flex-direction-column is-align-items-flex-end ">
+      <a href="{% url 'instrument_update' instrument.type.category.slug instrument.slug %}"
+          class="button is-info is-light mb-2" style="min-width: 12em;">Edit Instrument</a>
+      <a href="{% url 'instrument_delete' instrument.type.category.slug instrument.slug %}"
+          class="button is-danger is-light" style="min-width: 12em;">Delete Instrument</a>
+  </div>
 {% endif %}
-{% endfor %}
-
-
 {% endblock %}
