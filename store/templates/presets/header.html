@@ -62,8 +62,11 @@
                     document.documentElement.classList.add('theme-light');
                     document.documentElement.classList.remove('theme-dark');
                 }
-                else {
+                else if (savedTheme === 'dark') {
                     document.documentElement.classList.remove('theme-light');
+                }
+                else {
+                    document.documentElement.classList.add('theme-light');
                 }
             });
         </script>
