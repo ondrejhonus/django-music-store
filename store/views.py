@@ -9,6 +9,7 @@ def index(request):
     context = {
         'instruments': instruments,
         'categories': InstrumentCategory.objects.all(),
+        'title': 'Featured Products',
         }
     return render(request, 'index.html', context=context)
 
@@ -23,6 +24,7 @@ def search(request):
         context = {
             'instruments': instruments,
             'categories': InstrumentCategory.objects.all(),
+            'title': 'Search Results for: "' + search_query + '"',
             }
         return render(request, 'index.html', context=context)
     else:
