@@ -29,7 +29,6 @@ def search(request):
         ).order_by('year').reverse()
         context = {
             'instruments': instruments,
-            'categories': InstrumentCategory.objects.all(),
             'title': 'Search Results for: "' + search_query + '"',
             }
         return render(request, 'index.html', context=context)
