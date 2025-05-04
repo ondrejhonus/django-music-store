@@ -48,11 +48,14 @@
         <script>
             function toggleTheme() {
                 const html = document.documentElement;
-                html.classList.toggle('theme-light');
                 if (html.classList.contains('theme-light')) {
-                    localStorage.setItem('theme', 'light');
-                } else {
+                    html.classList.remove('theme-light');
+                    html.classList.add('theme-dark');
                     localStorage.setItem('theme', 'dark');
+                } else {
+                    html.classList.remove('theme-dark');
+                    html.classList.add('theme-light');
+                    localStorage.setItem('theme', 'light');
                 }
             }
 
@@ -64,9 +67,7 @@
                 }
                 else if (savedTheme === 'dark') {
                     document.documentElement.classList.remove('theme-light');
-                }
-                else {
-                    document.documentElement.classList.add('theme-light');
+                    document.documentElement.classList.add('theme-dark');
                 }
             });
         </script>
