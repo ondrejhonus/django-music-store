@@ -20,6 +20,12 @@ def search(request):
             brand__icontains=search_query
         ).union(
             Instrument.objects.filter(model__icontains=search_query)
+        ).union(
+            Instrument.objects.filter(type__name__icontains=search_query)
+        ).union(
+            Instrument.objects.filter(description__icontains=search_query)
+        ).union(
+            Instrument.objects.filter(type__category__name__icontains=search_query)
         ).order_by('year').reverse()
         context = {
             'instruments': instruments,
