@@ -13,7 +13,6 @@ class InstrumentForm(forms.ModelForm):
         fields = [
             'brand',
             'model',
-            'slug',
             'color',
             'description',
             'year',

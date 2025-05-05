@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, MaxLengthValidator, URLValidator
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -16,17 +17,26 @@ class InstrumentCategory(models.Model):
         help_text="Provide a description of the instrument category."
     )
     slug = models.SlugField(
-        max_length=50,
+        max_length=100,
         unique=True,
-        help_text="Enter a unique slug for the category (max 50 characters)",
-        validators=[
-            MinLengthValidator(2, "Slug must be at least 2 characters long."),
-            MaxLengthValidator(50, "Slug cannot exceed 50 characters.")
-        ],
+        blank=True,
+        help_text="Automatically generated slug."
     )
 
     class Meta:
         verbose_name_plural = "Instrument Categories"
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while InstrumentCategory.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -45,14 +55,22 @@ class InstrumentType(models.Model):
         help_text="Provide a description of the instrument type."
     )
     slug = models.SlugField(
-        max_length=50,
+        max_length=100,
         unique=True,
-        help_text="Enter a unique slug for the type (max 50 characters)",
-        validators=[
-            MinLengthValidator(2, "Slug must be at least 2 characters long."),
-            MaxLengthValidator(50, "Slug cannot exceed 50 characters.")
-        ],
+        blank=True,
+        help_text="Automatically generated slug."
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while InstrumentType.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -77,11 +95,8 @@ class Instrument(models.Model):
     slug = models.SlugField(
         max_length=100,
         unique=True,
-        help_text="Enter a unique slug for the instrument (max 100 characters)",
-        validators=[
-            MinLengthValidator(2, "Slug must be at least 2 characters long."),
-            MaxLengthValidator(100, "Slug cannot exceed 100 characters.")
-        ],
+        blank=True,
+        help_text="Automatically generated slug."
     )
     color = models.CharField(
         max_length=20,
@@ -130,6 +145,17 @@ class Instrument(models.Model):
             MinValueValidator(0, "Stock cannot be negative.")
         ]
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(f"{self.brand} {self.model}")
+            slug = base_slug
+            counter = 1
+            while Instrument.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.brand + ' ' + self.model
