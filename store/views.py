@@ -3,6 +3,7 @@ from .models import Instrument, InstrumentCategory, InstrumentType
 from .forms import UserRegistrationForm, InstrumentForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import permission_required
 
 def index(request):
     instruments = Instrument.objects.all().order_by('year').reverse()
@@ -72,6 +73,7 @@ def instrument_detail(request, cat, slug):
         }
     return render(request, 'instruments/detail.html', context=context)
 
+@permission_required('store.add_instrument', raise_exception=True)
 def instrument_create(request):
     if request.method == 'POST':
         form = InstrumentForm(request.POST, request.FILES)
@@ -87,7 +89,7 @@ def instrument_create(request):
         }
     return render(request, 'actions/create.html', context=context)
 
-
+@permission_required('store.delete_instrument', raise_exception=True)
 def instrument_delete(request, cat, slug):
     if not InstrumentType.objects.filter(category__slug=cat).exists():
         return render(request, '404.html')
@@ -102,6 +104,7 @@ def instrument_delete(request, cat, slug):
         }
     return render(request, 'actions/confirm-delete.html', context=context)
 
+@permission_required('store.change_instrument', raise_exception=True)
 def instrument_update(request, cat, slug):
     if not InstrumentType.objects.filter(category__slug=cat).exists():
         return render(request, '404.html')
@@ -120,7 +123,6 @@ def instrument_update(request, cat, slug):
         'instrument': instrument,
         }
     return render(request, 'actions/update.html', context=context)
-
 
 def register(request):
     if request.method == 'POST':

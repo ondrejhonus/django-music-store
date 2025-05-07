@@ -123,8 +123,7 @@ class Instrument(models.Model):
     type = models.ForeignKey(
         InstrumentType,
         on_delete=models.CASCADE,
-        blank=True,
-        null=True,
+        default=None,
         help_text="Select one or more types for this instrument."
     )
     image = models.ImageField(
